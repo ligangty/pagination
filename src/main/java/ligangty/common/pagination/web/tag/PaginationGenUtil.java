@@ -33,9 +33,8 @@ public class PaginationGenUtil {
 	 */
 	public String generatePageAnchor(int pageIndex, String showText) {
 		return "<a href=\"#\" onclick=\"this.parentNode." + PageBean.PAGE_ATTR
-				+ ".value=" + pageIndex
-				+ ";this.parentNode.submit()\"><span>" + showText
-				+ "</span></a>" + LINE_SEPARATOR;
+				+ ".value=" + pageIndex + ";this.parentNode.submit()\"><span>"
+				+ showText + "</span></a>" + LINE_SEPARATOR;
 	}
 
 	/**
@@ -49,13 +48,13 @@ public class PaginationGenUtil {
 		StringBuffer htmlBuf = new StringBuffer();
 		htmlBuf.append(
 				"<span>Total Records: " + pageBean.getTotalRecords()
-						+ "</span> ").append(LINE_SEPARATOR);
+						+ "</span>").append(LINE_SEPARATOR);
 		htmlBuf.append(
 				"<span>page: " + pageBean.getCurrentPage() + "/"
-						+ pageBean.getTotalPage() + "</span> ").append(
+						+ pageBean.getTotalPage() + "</span>").append(
 				LINE_SEPARATOR);
 		htmlBuf.append(
-				"<span>records in page: " + pageBean.getPageSize() + "</span> ")
+				"<span>records in page: " + pageBean.getPageSize() + "</span>")
 				.append(LINE_SEPARATOR);
 
 		htmlBuf.append(

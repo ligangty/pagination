@@ -3,6 +3,7 @@ package ligangty.common.pagination;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Page java bean to hold the page relative meta data
@@ -45,7 +46,7 @@ public class PageBean implements Serializable {
 	 * Map holds the web context params which may be used to be the searching
 	 * params for db
 	 */
-	private Map<String, Object> searchingParamsMap = new HashMap<String, Object>();
+	private Map<String, Object> searchingParamsMap = new ConcurrentHashMap<String, Object>();
 
 	/**
 	 * Default constructor, set page size to default page size(50)
