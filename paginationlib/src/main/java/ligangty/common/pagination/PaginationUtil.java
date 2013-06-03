@@ -37,7 +37,7 @@ public final class PaginationUtil {
      * @param request
      * @param totalRecords
      */
-    public static void initPageBean(HttpServletRequest request, long totalRecords) {
+    public static void initPageBean(HttpServletRequest request, Long totalRecords) {
         PageBean pageBean = getPageBean(request);
         pageBean.setTotalRecords(totalRecords);
         pageBean.setCurrentPage(1);
