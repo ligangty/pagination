@@ -7,7 +7,25 @@
 </head>
 
 <body>
-<page:pagination action="${pageContext.request.contextPath}/ShowSummary" divCssClass="page" />
+<table border="1" cellpadding="1" cellspacing="0" >
+<thead>
+	<tr>
+		<th>id</th>
+		<th>name</th>
+		<th>email</th>
+	</tr>
+</thead>
+<tbody>
+	<c:forEach items="${showList}" var="showBean">
+		<tr>
+			<td>${showBean.id}</td>
+			<td>${showBean.userName}</td>
+			<td>${showBean.email}</td>
+		</tr>
+	</c:forEach>
+</tbody>
+</table>
+<page:pagination action="${pageContext.request.contextPath}/ShowSummary" divCssClass="page" pagesize="30" />
 </body>
 </html>
 

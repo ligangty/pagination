@@ -1,4 +1,4 @@
-package liangty.common.pagination.example.servlet;
+package ligangty.common.pagination.example.servlet;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -23,7 +23,7 @@ public class ShowSummaryServlet extends HttpServlet {
     }
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         PageBean pageBean = PaginationUtil.getPageBean(request);
         List<ShowBean> showList = generateBeanList();
 
@@ -32,6 +32,7 @@ public class ShowSummaryServlet extends HttpServlet {
         }
 
         request.setAttribute("showList", findShowBeanList(pageBean,showList));
+        request.getRequestDispatcher("showList.jsp").forward(request, response);
     }
 
     private List<ShowBean> generateBeanList() {
@@ -44,9 +45,8 @@ public class ShowSummaryServlet extends HttpServlet {
 
     private List<ShowBean> findShowBeanList(PageBean pageBean, List<ShowBean> allShowBeans){
         List<ShowBean> findedBeans = new LinkedList<ShowBean>();
-        int curPage = pageBean.getCurrentPage();
         for(int i=0; i<pageBean.getPageSize();i++){
-            int index = pageBean.getCurrentPage()*pageBean.getPageSize()+i;
+            int index = (pageBean.getCurrentPage()-1)*pageBean.getPageSize()+i;
             if(index<=pageBean.getTotalRecords()-1){
                 findedBeans.add(allShowBeans.get(index));
             }else{

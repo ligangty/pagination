@@ -1,4 +1,4 @@
-package liangty.common.pagination.example.servlet;
+package ligangty.common.pagination.example.servlet;
 
 /**
  * Created with IntelliJ IDEA. User: gli Date: 6/3/13 Time: 6:02 PM To change this template use File | Settings | File

@@ -22,14 +22,14 @@ public class PaginationTag extends SimpleTagSupport {
 
     private Integer showpages = 5;
 
-    private Integer defaultpagesize = PageBean.DEFAULT_PAGE_SIZE;
+    private Integer pagesize = PageBean.DEFAULT_PAGE_SIZE;
 
     private PageBean pagebean;
 
     private String divCssClass;
 
     public PaginationTag() {
-        this.pageGen = new ItemsStylePageGenStrategy();
+        this.pageGen = new DownListStylePageGenStrategy();
     }
 
     /**
@@ -47,7 +47,7 @@ public class PaginationTag extends SimpleTagSupport {
             return;
         }
 
-        getPagebean().setPageSize(getDefaultpagesize());
+        getPagebean().setPageSize(getPagesize());
 
         getJspContext().getOut().write(generatePaging(getPagebean()));
 
@@ -99,12 +99,12 @@ public class PaginationTag extends SimpleTagSupport {
         this.showpages = showPages;
     }
 
-    public Integer getDefaultpagesize() {
-        return defaultpagesize;
+    public Integer getPagesize() {
+        return pagesize;
     }
 
-    public void setDefaultpagesize(Integer defaultpagesize) {
-        this.defaultpagesize = defaultpagesize;
+    public void setPagesize(Integer pagesize) {
+        this.pagesize = pagesize;
     }
 
     public PageBean getPagebean() {
