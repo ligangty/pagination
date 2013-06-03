@@ -10,65 +10,57 @@ import ligangty.common.pagination.PageBean;
  */
 public class ItemsStylePageGenStrategy implements PageGenStrategy {
 
-	/**
-	 * Items style paging generation strategy method
-	 * 
-	 * @param pageBean
-	 * @param showPages
-	 * @return
-	 */
-	@Override
-	public String generatePaging(PageBean pageBean, int showPages) {
+    /**
+     * Items style paging generation strategy method
+     * 
+     * @param pageBean
+     * @param showPages
+     * @return
+     */
+    @Override
+    public String generatePaging(PageBean pageBean, int showPages) {
 
-		StringBuffer htmlBuf = new StringBuffer();
+        StringBuffer htmlBuf = new StringBuffer();
 
-		htmlBuf.append(PaginationGenUtil.getInstance()
-				.generateCommonPagingPart(pageBean));
+        htmlBuf.append(PaginationGenUtil.getInstance().generateCommonPagingPart(pageBean));
 
-		if (pageBean.getCurrentPage() > 1) {
-			htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(
-					1, "first"));
-			htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(
-					pageBean.getPreviousPage(), "previous"));
-		}
+        if (pageBean.getCurrentPage() > 1) {
+            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(1, "first"));
+            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageBean.getPreviousPage(), "previous"));
+        }
 
-		int currentPageOffset = showPages / 2;
-		int startPosition = 1;
-		if (pageBean.getCurrentPage() - currentPageOffset > 0) {
-			startPosition = pageBean.getCurrentPage() - currentPageOffset;
-		}
-		int endPosition = pageBean.getCurrentPage() + currentPageOffset;
-		if (showPages % 2 == 0) {
-			endPosition--;
-		}
-		if (endPosition > pageBean.getTotalPage()) {
-			endPosition = pageBean.getTotalPage();
-		}
+        int currentPageOffset = showPages / 2;
+        int startPosition = 1;
+        if (pageBean.getCurrentPage() - currentPageOffset > 0) {
+            startPosition = pageBean.getCurrentPage() - currentPageOffset;
+        }
+        int endPosition = pageBean.getCurrentPage() + currentPageOffset;
+        if (showPages % 2 == 0) {
+            endPosition--;
+        }
+        if (endPosition > pageBean.getTotalPage()) {
+            endPosition = pageBean.getTotalPage();
+        }
 
-		if (endPosition < showPages) {
-			endPosition = showPages;
-		}
+        if (endPosition < showPages) {
+            endPosition = showPages;
+        }
 
-		for (int pageInd = startPosition; pageInd >= startPosition
-				&& pageInd <= endPosition; pageInd++) {
-			if (pageInd == pageBean.getCurrentPage()) {
-				htmlBuf.append("<strong>" + pageInd + "</strong>").append(
-						PaginationGenUtil.LINE_SEPARATOR);
-			} else {
-				htmlBuf.append(PaginationGenUtil.getInstance()
-						.generatePageAnchor(pageInd, "" + pageInd));
-			}
-		}
+        for (int pageInd = startPosition; pageInd >= startPosition && pageInd <= endPosition; pageInd++) {
+            if (pageInd == pageBean.getCurrentPage()) {
+                htmlBuf.append("<strong>" + pageInd + "</strong>").append(PaginationGenUtil.LINE_SEPARATOR);
+            } else {
+                htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageInd, "" + pageInd));
+            }
+        }
 
-		if (pageBean.getCurrentPage() < pageBean.getTotalPage()) {
-			htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(
-					pageBean.getNextPage(), "next"));
-			htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(
-					pageBean.getTotalPage(), "last"));
-		}
+        if (pageBean.getCurrentPage() < pageBean.getTotalPage()) {
+            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageBean.getNextPage(), "next"));
+            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageBean.getTotalPage(), "last"));
+        }
 
-		return htmlBuf.toString();
+        return htmlBuf.toString();
 
-	}
+    }
 
 }

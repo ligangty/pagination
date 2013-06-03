@@ -11,118 +11,116 @@ import org.apache.commons.logging.LogFactory;
  * Tag class to generate the pagination html contents.
  * 
  * @author gli@redhat.com
- *
+ * 
  */
 public class PaginationTag extends SimpleTagSupport {
-	private static final Log log = LogFactory.getLog(PaginationTag.class);
-	
-	private PageGenStrategy pageGen;
+    private static final Log log = LogFactory.getLog(PaginationTag.class);
 
-	private String action = "";
+    private PageGenStrategy pageGen;
 
-	private Integer showpages = 5;
+    private String action = "";
 
-	private Integer defaultpagesize = PageBean.DEFAULT_PAGE_SIZE;
+    private Integer showpages = 5;
 
-	private PageBean pagebean;
+    private Integer defaultpagesize = PageBean.DEFAULT_PAGE_SIZE;
 
-	private String divCssClass;
+    private PageBean pagebean;
 
-	public PaginationTag() {
-		this.pageGen = new ItemsStylePageGenStrategy();
-	}
-	/**
-	 * actual tag handler method
-	 */
-	@Override
-	public void doTag() throws javax.servlet.jsp.JspException,
-			java.io.IOException {
+    private String divCssClass;
 
-		if (getPagebean() == null) {
-			setPagebean((PageBean) getJspContext().findAttribute(
-					PageBean.PAGE_BEAN_ATTR));
-		}
+    public PaginationTag() {
+        this.pageGen = new ItemsStylePageGenStrategy();
+    }
 
-		if (getPagebean() == null) {
-			log.error("pageBean cannot be found in page context",
-					new Exception("pageBean cannot be found in page context"));
-			return;
-		}
+    /**
+     * actual tag handler method
+     */
+    @Override
+    public void doTag() throws javax.servlet.jsp.JspException, java.io.IOException {
 
-		getPagebean().setPageSize(getDefaultpagesize());
+        if (getPagebean() == null) {
+            setPagebean((PageBean) getJspContext().findAttribute(PageBean.PAGE_BEAN_ATTR));
+        }
 
-		getJspContext().getOut().write(generatePaging(getPagebean()));
+        if (getPagebean() == null) {
+            log.error("pageBean cannot be found in page context", new Exception("pageBean cannot be found in page context"));
+            return;
+        }
 
-	}
+        getPagebean().setPageSize(getDefaultpagesize());
 
-	/**
-	 * Generates page numbers based on page generation strategy 
-	 * 
-	 * @param pageBean
-	 * @return
-	 */
-	protected String generatePaging(PageBean pageBean) {
-		StringBuffer htmlBuf = new StringBuffer();
-		
-		if (pageBean.getTotalPage() < getShowpages()) {
-			setShowpages(pageBean.getTotalPage());
-		}
-		
-		if(getDivCssClass()!=null&&!getDivCssClass().trim().equals("")){
-			htmlBuf.append("<div class=\""+getDivCssClass()+"\">");
-		}else{
-			htmlBuf.append("<div>");
-		}
+        getJspContext().getOut().write(generatePaging(getPagebean()));
 
-		htmlBuf.append("<form action=\"" + getAction() + "\">");
+    }
 
-		htmlBuf.append(pageGen.generatePaging(pageBean, getShowpages()));
+    /**
+     * Generates page numbers based on page generation strategy
+     * 
+     * @param pageBean
+     * @return
+     */
+    protected String generatePaging(PageBean pageBean) {
+        StringBuffer htmlBuf = new StringBuffer();
 
-		htmlBuf.append("</form>");
+        if (pageBean.getTotalPage() < getShowpages()) {
+            setShowpages(pageBean.getTotalPage());
+        }
 
-		htmlBuf.append("</div>");
+        if (getDivCssClass() != null && !getDivCssClass().trim().equals("")) {
+            htmlBuf.append("<div class=\"" + getDivCssClass() + "\">");
+        } else {
+            htmlBuf.append("<div>");
+        }
 
-		return htmlBuf.toString();
-	}
+        htmlBuf.append("<form action=\"" + getAction() + "\">");
 
-	public String getAction() {
-		return action;
-	}
+        htmlBuf.append(pageGen.generatePaging(pageBean, getShowpages()));
 
-	public void setAction(String action) {
-		this.action = action;
-	}
+        htmlBuf.append("</form>");
 
-	public Integer getShowpages() {
-		return showpages;
-	}
+        htmlBuf.append("</div>");
 
-	public void setShowpages(Integer showPages) {
-		this.showpages = showPages;
-	}
+        return htmlBuf.toString();
+    }
 
-	public Integer getDefaultpagesize() {
-		return defaultpagesize;
-	}
+    public String getAction() {
+        return action;
+    }
 
-	public void setDefaultpagesize(Integer defaultpagesize) {
-		this.defaultpagesize = defaultpagesize;
-	}
+    public void setAction(String action) {
+        this.action = action;
+    }
 
-	public PageBean getPagebean() {
-		return pagebean;
-	}
+    public Integer getShowpages() {
+        return showpages;
+    }
 
-	public void setPagebean(PageBean pageBean) {
-		this.pagebean = pageBean;
-	}
+    public void setShowpages(Integer showPages) {
+        this.showpages = showPages;
+    }
 
-	public String getDivCssClass() {
-		return divCssClass;
-	}
+    public Integer getDefaultpagesize() {
+        return defaultpagesize;
+    }
 
-	public void setDivCssClass(String divCssClass) {
-		this.divCssClass = divCssClass;
-	}
+    public void setDefaultpagesize(Integer defaultpagesize) {
+        this.defaultpagesize = defaultpagesize;
+    }
+
+    public PageBean getPagebean() {
+        return pagebean;
+    }
+
+    public void setPagebean(PageBean pageBean) {
+        this.pagebean = pageBean;
+    }
+
+    public String getDivCssClass() {
+        return divCssClass;
+    }
+
+    public void setDivCssClass(String divCssClass) {
+        this.divCssClass = divCssClass;
+    }
 
 }

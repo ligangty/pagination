@@ -7,11 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created with IntelliJ IDEA.
- * User: gli
+ * @author: ligangty
  * Date: 6/3/13
  * Time: 2:16 PM
- * To change this template use File | Settings | File Templates.
  */
 public class ShowSummaryServlet extends HttpServlet {
 
