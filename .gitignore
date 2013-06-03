@@ -8,3 +8,5 @@ target/
 .pmd
 */.pmd
 */reports/*
+.idea
+*.iml
