@@ -14,5 +14,15 @@
         <url-pattern>/ShowSummary</url-pattern>
     </filter-mapping>
 
+
+    <servlet>
+        <servlet-name>ShowSummaryServlet</servlet-name>
+        <servlet-class>ligangty.common.pagination.example.servlet.ShowSummaryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ShowSummaryServlet</servlet-name>
+        <url-pattern>/ShowSummary</url-pattern>
+    </servlet-mapping>
+
     <display-name>page-example</display-name>
 </web-app>
