@@ -1,7 +1,6 @@
 package ligangty.common.pagination;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -52,7 +51,7 @@ public class PageBean implements Serializable {
 	 * Default constructor, set page size to default page size(50)
 	 */
 	public PageBean() {
-		setPageSize(DEFAULT_PAGE_SIZE);
+		this.pageSize = DEFAULT_PAGE_SIZE;
 	}
 
 	/**
@@ -61,9 +60,9 @@ public class PageBean implements Serializable {
 	 * @param totalRecords
 	 */
 	public PageBean(long totalRecords) {
-		setPageSize(DEFAULT_PAGE_SIZE);
-		setTotalPage((int) (totalRecords % pageSize == 0 ? totalRecords
-				/ pageSize : totalRecords / pageSize + 1));
+		this.pageSize = DEFAULT_PAGE_SIZE;
+		this.totalPage = (int) (totalRecords % pageSize == 0 ? totalRecords
+				/ pageSize : totalRecords / pageSize + 1);
 	}
 
 	/**
@@ -73,9 +72,9 @@ public class PageBean implements Serializable {
 	 * @param pageSize
 	 */
 	public PageBean(long totalRecords, int pageSize) {
-		setPageSize(pageSize);
-		setTotalPage((int) (totalRecords % pageSize == 0 ? totalRecords
-				/ pageSize : totalRecords / pageSize + 1));
+		this.pageSize = pageSize;
+		this.totalPage = (int) (totalRecords % pageSize == 0 ? totalRecords
+				/ pageSize : totalRecords / pageSize + 1);
 	}
 
 	public int getCurrentPage() {
