@@ -1,27 +1,25 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ligangty.common.pagination.web.tag;
 
 import ligangty.common.pagination.PageBean;
 
 /**
- *
+ * Abstract Strategy class to extract the common outer rendering functions
+ * 
  * @author gli
  */
 public abstract class AbstractPageGenStrategy implements PageGenStrategy {
 
+    @Override
     public String generatePaging(PageBean pageBean, int showPages, String actionUrl, String cssClass) {
         StringBuilder htmlBuf = new StringBuilder();
 
         if (cssClass != null && !cssClass.trim().equals("")) {
-            htmlBuf.append("<div class=\"" + cssClass + "\">");
+            htmlBuf.append("<div class=\"").append(cssClass).append("\">");
         } else {
             htmlBuf.append("<div>");
         }
 
-        htmlBuf.append("<form action=\"" + actionUrl + "\">");
+        htmlBuf.append("<form action=\"").append(actionUrl).append("\">");
 
         htmlBuf.append(generateInnerPaging(pageBean, showPages));
 

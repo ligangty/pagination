@@ -19,14 +19,14 @@ public class ItemsStylePageGenStrategy extends AbstractPageGenStrategy {
      */
     @Override
     public String generateInnerPaging(PageBean pageBean, int showPages) {
-
         StringBuilder htmlBuf = new StringBuilder();
+        PaginationGenUtil genUtil = PaginationGenUtil.getInstance();
 
-        htmlBuf.append(PaginationGenUtil.getInstance().generateCommonPagingPart(pageBean));
+        htmlBuf.append(genUtil.generateCommonPagingPart(pageBean));
 
         if (pageBean.getCurrentPage() > 1) {
-            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(1, "first"));
-            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageBean.getPreviousPage(), "previous"));
+            htmlBuf.append(genUtil.generatePageAnchor(1, "first"));
+            htmlBuf.append(genUtil.generatePageAnchor(pageBean.getPreviousPage(), "previous"));
         }
 
         int currentPageOffset = showPages / 2;
@@ -48,15 +48,15 @@ public class ItemsStylePageGenStrategy extends AbstractPageGenStrategy {
 
         for (int pageInd = startPosition; pageInd >= startPosition && pageInd <= endPosition; pageInd++) {
             if (pageInd == pageBean.getCurrentPage()) {
-                htmlBuf.append("<strong>" + pageInd + "</strong>").append(PaginationGenUtil.LINE_SEPARATOR);
+                htmlBuf.append("<strong>").append(pageInd).append("</strong>").append(PaginationGenUtil.LINE_SEPARATOR);
             } else {
-                htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageInd, "" + pageInd));
+                htmlBuf.append(genUtil.generatePageAnchor(pageInd, "" + pageInd));
             }
         }
 
         if (pageBean.getCurrentPage() < pageBean.getTotalPage()) {
-            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageBean.getNextPage(), "next"));
-            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageBean.getTotalPage(), "last"));
+            htmlBuf.append(genUtil.generatePageAnchor(pageBean.getNextPage(), "next"));
+            htmlBuf.append(genUtil.generatePageAnchor(pageBean.getTotalPage(), "last"));
         }
 
         return htmlBuf.toString();

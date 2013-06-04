@@ -19,29 +19,29 @@ public class DownListStylePageGenStrategy extends AbstractPageGenStrategy {
      */
     @Override
     protected String generateInnerPaging(PageBean pageBean, int showPages) {
+        StringBuilder htmlBuf = new StringBuilder();
+        PaginationGenUtil genUtil = PaginationGenUtil.getInstance();
 
-        StringBuffer htmlBuf = new StringBuffer();
-
-        htmlBuf.append(PaginationGenUtil.getInstance().generateCommonPagingPart(pageBean));
+        htmlBuf.append(genUtil.generateCommonPagingPart(pageBean));
 
         if (pageBean.getCurrentPage() > 1) {
-            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(1, "first"));
-            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageBean.getPreviousPage(), "previous"));
+            htmlBuf.append(genUtil.generatePageAnchor(1, "first"));
+            htmlBuf.append(genUtil.generatePageAnchor(pageBean.getPreviousPage(), "previous"));
         }
 
         if (pageBean.getCurrentPage() < pageBean.getTotalPage()) {
-            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageBean.getNextPage(), "next"));
-            htmlBuf.append(PaginationGenUtil.getInstance().generatePageAnchor(pageBean.getTotalPage(), "last"));
+            htmlBuf.append(genUtil.generatePageAnchor(pageBean.getNextPage(), "next"));
+            htmlBuf.append(genUtil.generatePageAnchor(pageBean.getTotalPage(), "last"));
         }
 
         htmlBuf.append("<select onchange=\"this.parentNode." + PageBean.PAGE_ATTR
                 + ".value=this.value;this.parentNode.submit()\">");
         for (int pageIndex = 1; pageIndex <= pageBean.getTotalPage(); pageIndex++) {
-            htmlBuf.append("<option value=\"" + pageIndex + "\"");
+            htmlBuf.append("<option value=\"").append(pageIndex).append("\"");
             if (pageIndex == pageBean.getCurrentPage()) {
                 htmlBuf.append(" selected=\"selected\"");
             }
-            htmlBuf.append(">page " + pageIndex + "</option>");
+            htmlBuf.append(">page ").append(pageIndex).append("</option>");
         }
 
         htmlBuf.append("</select>");
