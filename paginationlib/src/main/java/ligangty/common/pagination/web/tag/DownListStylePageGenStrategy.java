@@ -8,7 +8,7 @@ import ligangty.common.pagination.PageBean;
  * @author gli@redhat.com
  * 
  */
-public class DownListStylePageGenStrategy implements PageGenStrategy {
+public class DownListStylePageGenStrategy extends AbstractPageGenStrategy {
 
     /**
      * Drop down list styled paging generation strategy method
@@ -18,7 +18,7 @@ public class DownListStylePageGenStrategy implements PageGenStrategy {
      * @return
      */
     @Override
-    public String generatePaging(PageBean pageBean, int showPages) {
+    protected String generateInnerPaging(PageBean pageBean, int showPages) {
 
         StringBuffer htmlBuf = new StringBuffer();
 

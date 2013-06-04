@@ -60,27 +60,11 @@ public class PaginationTag extends SimpleTagSupport {
      * @return
      */
     protected String generatePaging(PageBean pageBean) {
-        StringBuffer htmlBuf = new StringBuffer();
-
         if (pageBean.getTotalPage() < getShowpages()) {
             setShowpages(pageBean.getTotalPage());
         }
 
-        if (getDivCssClass() != null && !getDivCssClass().trim().equals("")) {
-            htmlBuf.append("<div class=\"" + getDivCssClass() + "\">");
-        } else {
-            htmlBuf.append("<div>");
-        }
-
-        htmlBuf.append("<form action=\"" + getAction() + "\">");
-
-        htmlBuf.append(pageGen.generatePaging(pageBean, getShowpages()));
-
-        htmlBuf.append("</form>");
-
-        htmlBuf.append("</div>");
-
-        return htmlBuf.toString();
+        return pageGen.generatePaging(pageBean, getShowpages(), getAction(), getDivCssClass());
     }
 
     public String getAction() {

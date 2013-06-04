@@ -8,7 +8,7 @@ import ligangty.common.pagination.PageBean;
  * @author gli@redhat.com
  * 
  */
-public class ItemsStylePageGenStrategy implements PageGenStrategy {
+public class ItemsStylePageGenStrategy extends AbstractPageGenStrategy {
 
     /**
      * Items style paging generation strategy method
@@ -18,9 +18,9 @@ public class ItemsStylePageGenStrategy implements PageGenStrategy {
      * @return
      */
     @Override
-    public String generatePaging(PageBean pageBean, int showPages) {
+    public String generateInnerPaging(PageBean pageBean, int showPages) {
 
-        StringBuffer htmlBuf = new StringBuffer();
+        StringBuilder htmlBuf = new StringBuilder();
 
         htmlBuf.append(PaginationGenUtil.getInstance().generateCommonPagingPart(pageBean));
 

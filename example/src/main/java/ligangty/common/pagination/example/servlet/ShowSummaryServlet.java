@@ -31,7 +31,7 @@ public class ShowSummaryServlet extends HttpServlet {
             PaginationUtil.initPageBean(request, Integer.valueOf(showList.size()).longValue());
         }
 
-        request.setAttribute("showList", findShowBeanList(pageBean,showList));
+        request.setAttribute("showList", findShowBeanList(pageBean, showList));
         request.getRequestDispatcher("showList.jsp").forward(request, response);
     }
 
@@ -43,13 +43,13 @@ public class ShowSummaryServlet extends HttpServlet {
         return list;
     }
 
-    private List<ShowBean> findShowBeanList(PageBean pageBean, List<ShowBean> allShowBeans){
+    private List<ShowBean> findShowBeanList(PageBean pageBean, List<ShowBean> allShowBeans) {
         List<ShowBean> findedBeans = new LinkedList<ShowBean>();
-        for(int i=0; i<pageBean.getPageSize();i++){
-            int index = (pageBean.getCurrentPage()-1)*pageBean.getPageSize()+i;
-            if(index<=pageBean.getTotalRecords()-1){
+        for (int i = 0; i < pageBean.getPageSize(); i++) {
+            int index = (pageBean.getCurrentPage() - 1) * pageBean.getPageSize() + i;
+            if (index <= pageBean.getTotalRecords() - 1) {
                 findedBeans.add(allShowBeans.get(index));
-            }else{
+            } else {
                 break;
             }
         }

@@ -16,7 +16,7 @@ public class DownListStylePageGenStrategyTest {
         bean.setTotalPage(20);
         bean.setPageSize(50);
         bean.addSearchingParams("param", "paramValue");
-        String result = dlStra.generatePaging(bean, 5);
+        String result = dlStra.generatePaging(bean, 5, "", "");
         String expectContainsFirstPrevious = "<a href=\"#\" onclick=\"this.parentNode.page.value=1;this.parentNode.submit()\"><span>first</span></a>"
                 + PaginationGenUtil.LINE_SEPARATOR
                 + "<a href=\"#\" onclick=\"this.parentNode.page.value=1;this.parentNode.submit()\"><span>previous</span></a>";

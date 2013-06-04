@@ -47,6 +47,15 @@
 	</dependencies>
 
     <build>
+        <plugins>
+            <plugin>
+                <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
+                <artifactId>maven-java-formatter-plugin</artifactId>
+                <configuration>
+                    <configFile>../convention/as7formatter.xml</configFile>
+                </configuration>
+            </plugin>
+        </plugins>
         <finalName>page-example</finalName>
     </build>
 </project>

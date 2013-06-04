@@ -15,8 +15,10 @@ public interface PageGenStrategy {
      * 
      * @param pageBean
      * @param showPages
+     * @param actionUrl 
+     * @param cssClass 
      * @return
      */
-    String generatePaging(PageBean pageBean, int showPages);
+    String generatePaging(PageBean pageBean, int showPages, String actionUrl, String cssClass);
 
 }

@@ -18,7 +18,6 @@ public class ItemsStylePageGenStrategyTest {
         bean.setTotalPage(20);
         bean.setPageSize(50);
         bean.addSearchingParams("param", "paramValue");
-        String result = isStra.generatePaging(bean, 5);
-        System.out.println(result);
+        String result = isStra.generatePaging(bean, 5, "", "");
     }
 }
