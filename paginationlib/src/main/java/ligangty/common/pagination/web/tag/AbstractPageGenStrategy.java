@@ -19,7 +19,7 @@ public abstract class AbstractPageGenStrategy implements PageGenStrategy {
             htmlBuf.append("<div>");
         }
 
-        htmlBuf.append("<form action=\"").append(actionUrl).append("\">");
+        htmlBuf.append("<form method=\"post\" action=\"").append(actionUrl).append("\">");
 
         htmlBuf.append(generateInnerPaging(pageBean, showPages));
 

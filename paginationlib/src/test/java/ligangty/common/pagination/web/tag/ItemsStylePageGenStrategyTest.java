@@ -21,7 +21,7 @@ public class ItemsStylePageGenStrategyTest {
         bean.addSearchingParams("param", "paramValue");
         String result = isStra.generatePaging(bean, 5, "action", "testClass");
         assertTrue(result.contains("<div class=\"testClass\">"));
-        assertTrue(result.contains("<form action=\"action\">"));
+        assertTrue(result.contains("<form method=\"post\" action=\"action\">"));
         assertTrue(result
                 .contains("<a href=\"#\" onclick=\"this.parentNode.page.value=1;this.parentNode.submit()\"><span>first</span></a>"));
         assertTrue(result
